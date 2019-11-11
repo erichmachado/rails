@@ -126,6 +126,10 @@
 
     *Edouard Chin*
 
+*   Updates the `Digest::UUID.uuid_from_hash` to return the correct UUID values for namespace IDs represented as strings.
+
+    *Erich Soares Machado, Eugene Kenny*
+
 *   Support `prepend` with `ActiveSupport::Concern`.
 
     Allows a module with `extend ActiveSupport::Concern` to be prepended.
