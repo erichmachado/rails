@@ -1,3 +1,7 @@
+*   Updates the `Digest::UUID.uuid_from_hash` to return the correct UUID values for namespace IDs represented as strings.
+
+    *Erich Soares Machado*
+
 *   Deprecate using `Range#include?` method to check the inclusion of a value
     in a date time range. It is recommended to use `Range#cover?` method
     instead of `Range#include?` to check the inclusion of a value
