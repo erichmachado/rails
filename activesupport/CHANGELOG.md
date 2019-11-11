@@ -1,3 +1,7 @@
+*   Updates the `Digest::UUID.uuid_from_hash` to return the correct UUID values for namespace IDs represented as strings.
+
+    *Erich Soares Machado, Eugene Kenny*
+
 *   Support `prepend` with `ActiveSupport::Concern`.
 
     Allows a module with `extend ActiveSupport::Concern` to be prepended.
@@ -14,7 +18,7 @@
           prepend Imposter
         end
 
-    Class methods are prepended to the base class, concerning is also 
+    Class methods are prepended to the base class, concerning is also
     updated: `concerning :Imposter, prepend: true do`.
 
     *Jason Karns, Elia Schito*
