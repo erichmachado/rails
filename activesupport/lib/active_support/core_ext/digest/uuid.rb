@@ -24,7 +24,7 @@ module Digest
         raise ArgumentError, "Expected Digest::SHA1 or Digest::MD5, got #{hash_class.name}."
       end
 
-      packed_namespace_uuid = uuid_namespace.length == 36 ? pack_uuid(uuid_namespace) : uuid_namespace
+      packed_namespace_uuid = uuid_string?(uuid_namespace) ? pack_uuid(uuid_namespace) : uuid_namespace
 
       hash = hash_class.new
       hash.update(packed_namespace_uuid)
@@ -52,10 +52,16 @@ module Digest
       SecureRandom.uuid
     end
 
+    def self.uuid_string?(uuid)
+      uuid.match?(/(\h{8})-(\h{4})-(\h{4})-(\h{4})-(\h{4})(\h{8})/)
+    rescue ArgumentError
+      false
+    end
+
     def self.pack_uuid(uuid)
       uuid.scan(/(\h{8})-(\h{4})-(\h{4})-(\h{4})-(\h{4})(\h{8})/).flatten.map { |s| s.to_i(16) }.pack("NnnnnN")
     end
 
-    private_class_method :pack_uuid
+    private_class_method :uuid_string?, :pack_uuid
   end
 end
