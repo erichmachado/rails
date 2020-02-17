@@ -53,7 +53,7 @@ module Digest
     end
 
     def self.pack_uuid(uuid)
-      uuid.scan(/(\h{8})-(\h{4})-(\h{4})-(\h{4})-(\h{4})(\h{8})/).flatten.map { |s| s.to_i(16) }.pack("NnnnnN")
+      uuid.match(/\A(\h{8})-(\h{4})-(\h{4})-(\h{4})-(\h{4})(\h{8})\z/).captures.map { |s| s.to_i(16) }.pack("NnnnnN")
     end
 
     private_class_method :pack_uuid
