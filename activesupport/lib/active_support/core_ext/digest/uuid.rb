@@ -53,7 +53,15 @@ module Digest
     end
 
     def self.pack_uuid(uuid)
-      uuid.match(/\A(\h{8})-(\h{4})-(\h{4})-(\h{4})-(\h{4})(\h{8})\z/).captures.map { |s| s.to_i(16) }.pack("NnnnnN")
+      if ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids == true
+        uuid.match(/\A(\h{8})-(\h{4})-(\h{4})-(\h{4})-(\h{4})(\h{8})\z/).captures.map { |s| s.to_i(16) }.pack("NnnnnN")
+      else
+        ActiveSupport::Deprecation.warn <<~WARNING.squish
+          Providing a UUID string as a namespace currently generates an incorrect value according to RFC 4122. To enable the correct behavior, set the Rails.application.config.active_support.use_rfc4122_namespaced_uuids configuration option to true.
+        WARNING
+
+        uuid
+      end
     end
 
     private_class_method :pack_uuid
