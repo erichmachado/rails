@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 require_relative "../../abstract_unit"
-require "active_support/core_ext"
+require "active_support/core_ext/digest"
 
 class DigestUUIDExt < ActiveSupport::TestCase
   def with_use_rfc4122_namespaced_uuids_set_to(value = false)
-    old_value = ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids
-    ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids = value
+    old_value = ActiveSupport.use_rfc4122_namespaced_uuids
+    ActiveSupport.use_rfc4122_namespaced_uuids = value
     yield
   ensure
-    ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids = old_value
+    ActiveSupport.use_rfc4122_namespaced_uuids = old_value
   end
 
   def test_constants

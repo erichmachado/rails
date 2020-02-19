@@ -55,7 +55,7 @@ module Digest
     end
 
     def self.pack_uuid(uuid)
-      if ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids == true
+      if use_rfc4122_namespaced_uuids == true
         uuid.match(/\A(\h{8})-(\h{4})-(\h{4})-(\h{4})-(\h{4})(\h{8})\z/).captures.map { |s| s.to_i(16) }.pack("NnnnnN")
       else
         ActiveSupport::Deprecation.warn <<~WARNING.squish
