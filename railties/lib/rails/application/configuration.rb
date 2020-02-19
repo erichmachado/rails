@@ -176,6 +176,10 @@ module Rails
             action_dispatch.cookies_same_site_protection = :lax
           end
 
+          if respond_to?(:active_support)
+            active_support.use_rfc4122_namespaced_uuids = false
+          end
+
           ActiveSupport.utc_to_local_returns_utc_offset_times = true
         else
           raise "Unknown version #{target_version.to_s.inspect}"
