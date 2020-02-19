@@ -1,6 +1,10 @@
 *   Updates the `Digest::UUID.uuid_from_hash` to return the correct UUID values for namespace IDs represented as strings.
 
-    *Erich Soares Machado, Eugene Kenny*
+    The new behavior will be enabled by setting the `config.active_support.use_rfc4122_namespaced_uuids` option to `true`.
+
+    The old behavior will be the default and will output a deprecation warning every time a string UUID is used as the namespace instead of one of the constants defined on the `Digest::UUID` extension.
+
+    *Alex Robbin, Erich Soares Machado, Eugene Kenny*
 
 *   Support `prepend` with `ActiveSupport::Concern`.
 
