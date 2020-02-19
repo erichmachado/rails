@@ -84,5 +84,15 @@ module ActiveSupport
         end
       end
     end
+
+
+    initializer "active_support.set_rfc4122_namespaced_uuids" do |app|
+      config.after_initialize do
+        unless app.config.active_support.use_rfc4122_namespaced_uuids.nil?
+          ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids =
+            app.config.active_support.use_rfc4122_namespaced_uuids
+        end
+      end
+    end
   end
 end

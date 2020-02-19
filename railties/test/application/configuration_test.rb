@@ -2177,6 +2177,24 @@ module ApplicationTests
       assert_equal Digest::MD5, ActiveSupport::Digest.hash_digest_class
     end
 
+    test "ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids can be configured via config.active_support.use_rfc4122_namespaced_uuids" do
+      remove_from_config '.*config\.load_defaults.*\n'
+
+      app_file "config/initializers/new_framework_defaults_6_1.rb", <<-RUBY
+        Rails.application.config.active_support.use_rfc4122_namespaced_uuids = true
+      RUBY
+
+      app "development"
+
+      assert_equal true, ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids
+    end
+
+    test "ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids is false by default for new apps" do
+      app "development"
+
+      assert_equal false, ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids
+    end
+
     test "custom serializers should be able to set via config.active_job.custom_serializers in an initializer" do
       class ::DummySerializer < ActiveJob::Serializers::ObjectSerializer; end
 

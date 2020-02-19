@@ -178,6 +178,10 @@ module Rails
           if respond_to?(:action_dispatch)
             action_dispatch.cookies_same_site_protection = :lax
           end
+
+          if respond_to?(:active_support)
+            active_support.use_rfc4122_namespaced_uuids = false
+          end
         else
           raise "Unknown version #{target_version.to_s.inspect}"
         end
