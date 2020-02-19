@@ -85,12 +85,11 @@ module ActiveSupport
       end
     end
 
-
     initializer "active_support.set_rfc4122_namespaced_uuids" do |app|
+      require "active_support/core_ext/digest"
       config.after_initialize do
         unless app.config.active_support.use_rfc4122_namespaced_uuids.nil?
-          ActiveSupport::CoreExt.use_rfc4122_namespaced_uuids =
-            app.config.active_support.use_rfc4122_namespaced_uuids
+          ActiveSupport.use_rfc4122_namespaced_uuids = app.config.active_support.use_rfc4122_namespaced_uuids
         end
       end
     end

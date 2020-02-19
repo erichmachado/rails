@@ -9,6 +9,8 @@ module Digest
     OID_NAMESPACE  = "k\xA7\xB8\x12\x9D\xAD\x11\xD1\x80\xB4\x00\xC0O\xD40\xC8" #:nodoc:
     X500_NAMESPACE = "k\xA7\xB8\x14\x9D\xAD\x11\xD1\x80\xB4\x00\xC0O\xD40\xC8" #:nodoc:
 
+    mattr_accessor :use_rfc4122_namespaced_uuids, instance_accessor: false, default: false
+
     # Generates a v5 non-random UUID (Universally Unique IDentifier).
     #
     # Using Digest::MD5 generates version 3 UUIDs; Digest::SHA1 generates version 5 UUIDs.
